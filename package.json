@@ -1,0 +1,87 @@
+{
+  "name": "kimu-cli",
+  "version": "0.0.1",
+  "description": "Official command-line interface for the KIMU framework ecosystem",
+  "main": "dist/index.js",
+  "bin": {
+    "kimu": "./bin/kimu.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "link": "npm link",
+    "release": "npm run build && npm publish",
+    "prepare": "npm run build",
+    "package": "npm run build && npm pack",
+    "version": "npm run build && npm test",
+    "prepublishOnly": "npm run lint && npm run test",
+    "preversion": "npm run lint && npm run test",
+    "postversion": "git push && git push --tags"
+  },
+  "keywords": [
+    "kimu",
+    "cli",
+    "framework",
+    "web-components",
+    "typescript",
+    "developer-tools"
+  ],
+  "author": "UnicoVerso",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnicoVerso/kimu-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/UnicoVerso/kimu-cli/issues"
+  },
+  "homepage": "https://github.com/UnicoVerso/kimu-cli#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^5.3.0",
+    "ora": "^7.0.1",
+    "inquirer": "^9.2.12",
+    "semver": "^7.5.4",
+    "fs-extra": "^11.1.1",
+    "axios": "^1.6.2",
+    "tar": "^6.2.0",
+    "glob": "^10.3.10",
+    "validate-npm-package-name": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/semver": "^7.5.6",
+    "@types/tar": "^6.1.10",
+    "@types/validate-npm-package-name": "^4.0.2",
+    "@types/jest": "^29.5.8",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.1",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.3"
+  },
+  "files": [
+    "dist/**/*",
+    "bin/**/*",
+    "templates/**/*",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ]
+}
