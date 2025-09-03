@@ -8,6 +8,9 @@ kimu <command> [options]
 ```
 
 ## Available Commands
+- `version`: Show version information
+- `help`: Show help for all commands
+- `info`: Show project information
 - `create <name>`: Create a new KIMU project
 - `install module <name>`: Install a module
 - `remove <name>`: Remove a module or extension
@@ -16,9 +19,9 @@ kimu <command> [options]
 - `build`: Build the project
 - `dev`: Start development server
 - `serve`: Serve built project
-- `info`: Show project information
 - `doctor`: Run diagnostics
-- `version`: Show version information
+
+> For details and usage examples of each command, see the dedicated documentation in `docs/commands/<command>.md`.
 
 ## Options
 - `--help`: Show help for any command
@@ -40,5 +43,9 @@ kimu info --json
 
 # Build the project
 kimu build
+
+# Show help for a command
+kimu help
+kimu create --help
 ```
 ---

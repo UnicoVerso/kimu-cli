@@ -39,6 +39,10 @@ If you use KIMU-CLI or want to improve it, open an issue or a pull request.
 - [Intro to KIMU-CLI](docs/intro.md)
 - [Command Reference: kimu](docs/command-kimu.md)
 - [Distribution & Installation Guide](docs/distribution.md)
+- [Command: create](docs/commands/create.md)
+- [Command: info](docs/commands/info.md)
+- [Command: help](docs/commands/help.md)
+- [Command: version](docs/commands/version.md)
 
 ## Installation
 
