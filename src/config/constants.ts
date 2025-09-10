@@ -6,8 +6,10 @@ export const CLI_NAME = 'kimu';
 export const CLI_VERSION = '1.0.0';
 
 // Registry configuration
-export const DEFAULT_REGISTRY_URL = 'https://github.com/unicoverso/kimu-modules';
-export const REGISTRY_API_ENDPOINT = 'https://api.github.com/repos/unicoverso/kimu-modules';
+export const DEFAULT_REGISTRY_URL =
+  'https://github.com/unicoverso/kimu-modules';
+export const REGISTRY_API_ENDPOINT =
+  'https://api.github.com/repos/unicoverso/kimu-modules';
 export const REGISTRY_TIMEOUT = 30000; // 30 seconds
 export const REGISTRY_RETRIES = 3;
 export const CACHE_TTL = 3600000; // 1 hour in milliseconds

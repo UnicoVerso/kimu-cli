@@ -12,11 +12,16 @@ export function setupCreateCommand(program: Command): void {
     .action(async (name: string, options: any) => {
       const targetDir = path.resolve(process.cwd(), name);
       if (fs.existsSync(targetDir) && !options.force) {
-        console.error(`Folder ${name} already exists. Use --force to overwrite.`);
+        console.error(
+          `Folder ${name} already exists. Use --force to overwrite.`
+        );
         process.exit(1);
       }
       fs.ensureDirSync(targetDir);
-      fs.writeFileSync(path.join(targetDir, 'README.md'), `# ${name}\n\nCreated with KIMU-CLI.`);
+      fs.writeFileSync(
+        path.join(targetDir, 'README.md'),
+        `# ${name}\n\nCreated with KIMU-CLI.`
+      );
       // TODO: Copy minimal files, generate config, etc.
       if (options.git) {
         require('child_process').execSync('git init', { cwd: targetDir });

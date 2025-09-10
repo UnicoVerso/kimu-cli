@@ -31,7 +31,7 @@ export async function handleVersionCommand(
       logger.bullet(`Node.js Version: ${process.version}`);
       logger.bullet(`Platform: ${process.platform}`);
       logger.bullet(`Architecture: ${process.arch}`);
-      
+
       // TODO: Add KIMU Core version detection when project detection is implemented
       // const projectInfo = await detectKimuProject();
       // if (projectInfo) {

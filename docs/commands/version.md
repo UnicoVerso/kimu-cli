@@ -1,16 +1,31 @@
 # kimu version
 
-Mostra la versione corrente di KIMU-CLI.
+Show the current version of KIMU-CLI.
 
-## Sintassi
+## Syntax
 ```bash
 kimu version [--verbose]
 ```
 
-## Opzioni
-- `--verbose`: mostra informazioni aggiuntive sulla versione
+## Options
+- `--verbose`: show additional version information and system details
 
-## Esempio
+## Examples
 ```bash
+# Show basic version
+kimu version
+
+# Show verbose version information
 kimu version --verbose
 ```
+
+## Output
+The basic version command shows:
+- KIMU-CLI version number
+
+The verbose version command shows:
+- KIMU-CLI version number
+- Node.js version
+- NPM version
+- Operating system information
+- Additional system details

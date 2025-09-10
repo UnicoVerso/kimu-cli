@@ -36,7 +36,7 @@ export class Logger {
 
   error(message: string, error?: Error): void {
     if (!this.shouldLog(LogLevel.ERROR)) return;
-    
+
     console.error(chalk.red(`${SYMBOLS.ERROR} ${message}`));
     if (error && this.verbose) {
       console.error(chalk.gray(error.stack || error.message));
@@ -45,25 +45,25 @@ export class Logger {
 
   warn(message: string): void {
     if (!this.shouldLog(LogLevel.WARN)) return;
-    
+
     console.warn(chalk.yellow(`${SYMBOLS.WARNING} ${message}`));
   }
 
   info(message: string): void {
     if (!this.shouldLog(LogLevel.INFO)) return;
-    
+
     console.log(chalk.blue(`${SYMBOLS.INFO} ${message}`));
   }
 
   success(message: string): void {
     if (!this.shouldLog(LogLevel.SUCCESS)) return;
-    
+
     console.log(chalk.green(`${SYMBOLS.SUCCESS} ${message}`));
   }
 
   debug(message: string, data?: unknown): void {
     if (!this.shouldLog(LogLevel.DEBUG)) return;
-    
+
     console.log(chalk.gray(`[DEBUG] ${message}`));
     if (data && this.verbose) {
       console.log(chalk.gray(JSON.stringify(data, null, 2)));

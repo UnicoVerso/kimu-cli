@@ -27,7 +27,7 @@ export async function handleInfoCommand(
 ): Promise<void> {
   try {
     const projectInfo = await gatherProjectInfo();
-    
+
     if (options.json) {
       logger.json(projectInfo);
     } else {
@@ -77,7 +77,7 @@ async function gatherProjectInfo(): Promise<ProjectInfoData> {
 
   // Check if we're in a KIMU project
   const kimuConfigPath = path.join(process.cwd(), KIMU_CONFIG_FILE);
-  
+
   if (await fs.pathExists(kimuConfigPath)) {
     try {
       const kimuConfig = await fs.readJson(kimuConfigPath);
@@ -113,19 +113,19 @@ function displayProjectInfo(
 ): void {
   logger.info('KIMU CLI Information');
   logger.newLine();
-  
+
   // CLI Information
   logger.bullet(`CLI Version: ${logger.highlight(info.cli.version)}`);
-  
+
   if (verbose) {
     logger.bullet(`Node.js: ${info.environment.nodeVersion}`);
     logger.bullet(`Platform: ${info.environment.platform}`);
     logger.bullet(`Architecture: ${info.environment.architecture}`);
     logger.bullet(`Working Directory: ${logger.path(info.environment.cwd)}`);
   }
-  
+
   logger.newLine();
-  
+
   // Project Information
   if (info.project) {
     if (info.project.isValid) {
@@ -134,11 +134,11 @@ function displayProjectInfo(
       logger.bullet(`Version: ${info.project.version}`);
       logger.bullet(`KIMU Core: ${info.project.kimuCore}`);
       logger.bullet(`Template: ${info.project.template}`);
-      
+
       if (info.project.modules.length > 0) {
         logger.bullet(`Modules: ${info.project.modules.join(', ')}`);
       }
-      
+
       if (info.project.extensions.length > 0) {
         logger.bullet(`Extensions: ${info.project.extensions.join(', ')}`);
       }

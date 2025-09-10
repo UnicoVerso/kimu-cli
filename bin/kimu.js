@@ -12,8 +12,8 @@ const { CLI_NAME, CLI_VERSION } = require('../dist/config/constants');
 const { setupVersionCommand } = require('../dist/commands/version');
 const { setupInfoCommand } = require('../dist/commands/info');
 const { setupHelpCommand } = require('../dist/commands/help');
+const { setupCreateCommand } = require('../dist/commands/create');
 // TODO: Import other commands as they are implemented
-// const { setupCreateCommand } = require('../dist/commands/create');
 // const { setupInstallCommand } = require('../dist/commands/install');
 // const { setupBuildCommand } = require('../dist/commands/build');
 // const { setupListCommand } = require('../dist/commands/list');
@@ -32,9 +32,9 @@ program
 setupVersionCommand(program);
 setupInfoCommand(program);
 setupHelpCommand(program);
+setupCreateCommand(program);
 
 // TODO: Setup other commands as they are implemented
-// setupCreateCommand(program);
 // setupInstallCommand(program);
 // setupBuildCommand(program);
 // setupListCommand(program);

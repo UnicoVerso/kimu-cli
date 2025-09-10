@@ -4,12 +4,26 @@ Official command-line interface for the KIMU framework ecosystem.
 
 ## Features
 
-- 🚀 **Project Creation**: Create new KIMU applications from templates
-- 📦 **Module Management**: Install and manage modules from kimu-modules registry
-- 🧩 **Extension Management**: Install and manage UI extensions
-- 🔧 **Build Tools**: Build and serve KIMU applications
-- 🔍 **Diagnostics**: Project health checks and compatibility validation
-- 🌐 **Ecosystem Integration**: Discover and explore KIMU packages
+- 🚀 **Project Creation**: Create new KIMU applications from templates with `kimu create`
+- 📦 **Module Management**: Install and manage modules from kimu-modules registry (planned)
+- 🧩 **Extension Management**: Install and manage UI extensions (planned)
+- 🔧 **Build Tools**: Build and serve KIMU applications with optimization (planned)
+- 🔍 **Diagnostics**: Project health checks and compatibility validation (planned)
+- 🌐 **Ecosystem Integration**: Discover and explore KIMU packages (planned)
+
+## Current Status
+
+✅ **Available Commands:**
+- `kimu create` - Create new KIMU projects
+- `kimu info` - Show project information
+- `kimu version` - Show version information  
+- `kimu help` - Command help system
+
+⏳ **Planned Commands:**
+- `kimu install/remove` - Package management
+- `kimu dev/build/serve` - Development workflow
+- `kimu list` - Browse packages
+- `kimu doctor` - Project diagnostics
 
 
 ## Author
@@ -36,13 +50,25 @@ If you use KIMU-CLI or want to improve it, open an issue or a pull request.
 - [Documentation](https://github.com/UnicoVerso/kimu-docs)
 - [UnicòVerso](https://unicoverso.org)
 
+- [📖 Complete Documentation Index](docs/index.md)
 - [Intro to KIMU-CLI](docs/intro.md)
 - [Command Reference: kimu](docs/command-kimu.md)
 - [Distribution & Installation Guide](docs/distribution.md)
+
+### Available Commands
 - [Command: create](docs/commands/create.md)
 - [Command: info](docs/commands/info.md)
 - [Command: help](docs/commands/help.md)
 - [Command: version](docs/commands/version.md)
+
+### Planned Commands
+- [Command: install](docs/commands/install.md) ⏳
+- [Command: remove](docs/commands/remove.md) ⏳
+- [Command: list](docs/commands/list.md) ⏳
+- [Command: build](docs/commands/build.md) ⏳
+- [Command: dev](docs/commands/dev.md) ⏳
+- [Command: serve](docs/commands/serve.md) ⏳
+- [Command: doctor](docs/commands/doctor.md) ⏳
 
 ## Installation
 
@@ -63,11 +89,11 @@ npm install --save-dev kimu-cli
 # Create a basic KIMU application
 kimu create my-app
 
-# Create with specific template
-kimu create my-dashboard --template dashboard
+# Create with git initialization
+kimu create my-dashboard --git
 
-# Interactive creation
-kimu create
+# Create and force overwrite if directory exists
+kimu create my-app --force
 ```
 
 ### Project Information
@@ -78,7 +104,7 @@ kimu info
 # Show detailed information
 kimu info --verbose
 
-# JSON output
+# JSON output for automation
 kimu info --json
 ```
 
@@ -91,13 +117,32 @@ kimu version
 kimu version --verbose
 ```
 
+### Get Help
+```bash
+# Show all available commands
+kimu help
+
+# Show help for specific command
+kimu help create
+kimu create --help
+```
+
 ## Commands
 
-### Project Creation
-- `kimu create <name>` - Create a new KIMU project
-- `kimu create <name> --template <template>` - Create with specific template
+### ✅ Available Commands
+- `kimu create <name>` - Create a new KIMU project with basic structure
+- `kimu info` - Show information about the current KIMU project
+- `kimu version` - Show KIMU-CLI version and system information
+- `kimu help` - Show help for all commands or specific command
 
-### Module Management
+### ⏳ Planned Commands (Coming Soon)
+- `kimu install <name>` - Install modules and extensions
+- `kimu remove <name>` - Remove modules and extensions
+- `kimu list [type]` - List available or installed packages
+- `kimu dev` - Start development server with hot reload
+- `kimu build` - Build project for production
+- `kimu serve` - Serve built project for testing
+- `kimu doctor` - Run project health diagnostics
 - `kimu install module <name>` - Install a module
 - `kimu remove <name>` - Remove a module or extension
 - `kimu list modules` - List available modules
