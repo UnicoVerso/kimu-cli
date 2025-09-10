@@ -47,7 +47,7 @@ If you use KIMU-CLI or want to improve it, open an issue or a pull request.
 - [KIMU Core](https://github.com/UnicoVerso/kimu-core)
 - [KIMU Modules](https://github.com/UnicoVerso/kimu-modules)
 - [KIMU Extensions](https://github.com/UnicoVerso/kimu-extensions)
-- [Documentation](https://github.com/UnicoVerso/kimu-docs)
+- [Documentation online](https://unicoverso.com/kimu/docs)
 - [UnicòVerso](https://unicoverso.org)
 
 - [📖 Complete Documentation Index](docs/index.md)
@@ -236,10 +236,10 @@ This project is licensed under the Mozilla Public License 2.0 - see the [LICENSE
 - [KIMU Framework](https://github.com/UnicoVerso/kimu)
 - [KIMU Core](https://github.com/UnicoVerso/kimu-core)
 - [KIMU Modules](https://github.com/UnicoVerso/kimu-modules)
-- [Documentation](https://github.com/UnicoVerso/kimu-docs)
+- [Documentation online](https://unicoverso.com/kimu/docs)
 
 ## Support
 
-- 📖 [Documentation](https://github.com/UnicoVerso/kimu-docs)
+- 📖 [Documentation repository](https://github.com/UnicoVerso/kimu-docs)
 - 🐛 [Issue Tracker](https://github.com/UnicoVerso/kimu-cli/issues)
 - 💬 [Discussions](https://github.com/UnicoVerso/kimu-cli/discussions)

@@ -222,7 +222,8 @@ Closes #123
 
 ## Getting Help
 
-- 📖 [Documentation](https://github.com/UnicoVerso/kimu-docs)
+- 📖 [Documentation online](https://unicoverso.com/kimu/docs)
+- 📘 [Documentation repository](https://github.com/unicoverso/kimu-docs)
 - 🐛 [Issue Tracker](https://github.com/UnicoVerso/kimu-cli/issues)
 - 💬 [Discussions](https://github.com/UnicoVerso/kimu-cli/discussions)
 
