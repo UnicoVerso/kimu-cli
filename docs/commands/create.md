@@ -34,20 +34,25 @@ kimu create my-app --git --no-install
 ```
 
 ## What it creates
-Currently, the command creates:
-- A new project folder with the specified name
-- A basic README.md file
-- Git repository initialization (if `--git` flag is used)
+The command performs the following steps:
+1. **Clones kimu-core repository** from GitHub (https://github.com/UnicoVerso/kimu-core.git)
+2. **Removes .git directory** to clean the project from the original repository history
+3. **Updates package.json** with the new project name
+4. **Installs npm dependencies** (unless `--no-install` is used)
+5. **Initializes new git repository** (if `--git` flag is used) with an initial commit
+6. **Provides next steps** for the user to continue development
 
 ## Notes
 - The project name must contain only lowercase letters, numbers, and hyphens
 - The command will fail if the target folder already exists (unless `--force` is used)
-- Future versions will include full KIMU project scaffolding with templates
-- Currently this is a basic implementation - full kimu-core integration is coming soon
+- Requires git to be installed on the system for repository cloning
+- Internet connection is required to clone the kimu-core repository
+- If cloning fails, the command will clean up any partial files created
+- The original kimu-core git history is completely removed from the new project
 
 ## Future features (planned)
 - Template support (`--template basic|dashboard|chat`)
-- Automatic kimu-core installation
-- Complete project structure generation
-- Configuration file creation (kimu.config.json, package.json, tsconfig.json)
-- Module and extension scaffolding
+- Custom repository URLs for cloning different project templates
+- Offline mode with cached project templates
+- Configuration file customization options
+- Integration with KIMU module and extension marketplace

@@ -57,6 +57,7 @@ coverage/
 .temp/
 tmp/
 temp/
+_TMP/
 
 # CLI specific
 .kimu-cache/
