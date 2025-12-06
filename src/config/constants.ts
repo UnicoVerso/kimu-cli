@@ -2,8 +2,15 @@
  * Global constants for KIMU-CLI
  */
 
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+// Read version from package.json
+const packageJsonPath = join(__dirname, '..', '..', 'package.json');
+const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
+
 export const CLI_NAME = 'kimu';
-export const CLI_VERSION = '1.0.0';
+export const CLI_VERSION = packageJson.version;
 
 // Registry configuration
 export const DEFAULT_REGISTRY_URL =

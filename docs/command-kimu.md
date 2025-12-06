@@ -2,10 +2,23 @@
 
 The `kimu` command is the main entry point for KIMU-CLI and provides access to all framework tools and utilities.
 
+## Installation
+
+### Global Installation
+```bash
+npm install -g kimu-cli
+```
+
+### Using npx (No Installation)
+```bash
+npx kimu-cli <command> [options]
+```
+
 ## Basic Usage
 ```bash
 kimu <command> [options]
 kimu <command> --help
+kimu --version
 ```
 
 ## Global Options
@@ -20,6 +33,7 @@ These options are available for all commands:
 | Command | Description | Status |
 |---------|-------------|---------|
 | `create <name>` | Create a new KIMU project | ✅ **Available** |
+| `new <type> <name>` | Create components from templates | ✅ **Available** |
 | `info` | Show project information and status | ✅ **Available** |
 | `doctor` | Run project health diagnostics | ⏳ **Planned** |
 

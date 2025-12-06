@@ -27,6 +27,7 @@ KIMU-CLI follows these principles:
 
 ### Project Management
 - `kimu create` - Create new KIMU projects
+- `kimu new` - Create components from templates (extensions, modules)
 - `kimu info` - Show project information and status
 - `kimu doctor` - Run project health diagnostics
 
@@ -46,25 +47,46 @@ KIMU-CLI follows these principles:
 
 ## Getting Started
 
-1. **Install KIMU-CLI globally**:
-   ```bash
-   npm install -g kimu-cli
-   ```
+### Installation
 
-2. **Create your first project**:
+**Option 1: Global Installation (Recommended)**
+```bash
+npm install -g kimu-cli
+```
+
+**Option 2: Use with npx (No Installation)**
+```bash
+npx kimu-cli create my-first-app
+```
+
+**Verify Installation**
+```bash
+kimu --version
+kimu --help
+```
+
+### Quick Start
+
+1. **Create your first project**:
    ```bash
    kimu create my-first-app
    cd my-first-app
    ```
 
-3. **Start developing**:
+2. **Install dependencies** (if not done automatically):
    ```bash
-   kimu dev
+   npm install
    ```
+
+3. **Start development server**:
+   ```bash
+   npm run dev
+   ```
+   Your app will be available at `http://localhost:5173/`
 
 4. **Build for production**:
    ```bash
-   kimu build
+   npm run build
    ```
 
 ## System Requirements

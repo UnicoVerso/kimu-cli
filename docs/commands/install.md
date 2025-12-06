@@ -6,13 +6,21 @@ Install modules and extensions for your KIMU project.
 ```bash
 kimu install module <name> [options]
 kimu install extension <name> [options]
-kimu install <name> [options]
 ```
 
 ## Arguments
 - `module <name>`: install a specific module from the KIMU modules registry
 - `extension <name>`: install a specific extension from the KIMU extensions registry
-- `<name>`: auto-detect type and install module or extension
+
+> ⚠️ **It is strongly recommended to always specify `module` or `extension` explicitly.**
+> The generic `kimu install <name>` syntax is discouraged to avoid ambiguity with third-party or similarly named packages.
+
+## Abbreviations
+
+You can use short aliases for install commands:
+
+- `kimu i m <name>` → `kimu install module <name>`
+- `kimu i e <name>` → `kimu install extension <name>`
 
 ## Options
 - `--save-dev`: install as development dependency
@@ -25,12 +33,13 @@ kimu install <name> [options]
 ```bash
 # Install a module
 kimu install module router
+# Or using abbreviation
+kimu i m router
 
 # Install an extension
 kimu install extension dashboard
-
-# Auto-detect and install
-kimu install analytics
+# Or using abbreviation
+kimu i e dashboard
 
 # Install specific version
 kimu install module router --version 1.2.0
@@ -40,7 +49,28 @@ kimu install module router --registry https://custom-registry.com
 
 # Force reinstall
 kimu install module router --force
+
+# Verbose output
+kimu install module analytics --verbose
 ```
+
+## Listing available and installed modules/extensions
+
+To list available modules/extensions from the registry:
+```bash
+kimu list modules      # Shows all modules with [installed] marker
+kimu list extensions   # Shows all extensions with [installed] marker
+```
+
+To list only installed modules/extensions in your project:
+```bash
+kimu list installed    # Shows installed modules and extensions
+```
+
+The `list modules` and `list extensions` commands show:
+- ✓ Green checkmark for installed packages
+- ○ Gray circle for available packages
+- `[installed]` label for clarity
 
 ## What it does
 - Downloads the specified module or extension from the registry
@@ -62,6 +92,20 @@ kimu install module router --force
 - Custom registries supported via `--registry` option
 
 ## Status
-⚠️ **This command is planned but not yet implemented**
-- Current status: Command structure defined, implementation pending
-- Target: Full registry integration with dependency resolution
+✅ **Command available (mock version)**
+- Current status: The install command is available and simulates the installation of modules or extensions from the registry (mock). The real logic for download and integration will be added in future releases.
+- Target: Full registry integration and dependency resolution coming soon.
+
+### Current behavior (December 2025)
+- The command accepts the name of a module or extension and shows a simulated installation.
+- You must specify `module` or `extension` explicitly.
+- Example:
+  ```bash
+  kimu install module router
+  kimu i m router
+  kimu install extension kimu-home
+  kimu i e kimu-dashboard
+  kimu install module analytics --verbose
+  ```
+- Simulated success or error output.
+- The structure is ready to be connected to a real registry.

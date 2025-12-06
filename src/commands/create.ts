@@ -14,9 +14,8 @@ export function setupCreateCommand(program: Command): void {
     .option('--force', 'Overwrite if folder exists')
     .action(async (name: string, options: any) => {
       console.log(`Creating KIMU project: ${name}...`);
-      
       const targetDir = path.resolve(process.cwd(), name);
-      
+
       // Check if directory exists
       if (fs.existsSync(targetDir) && !options.force) {
         console.error(
@@ -32,21 +31,55 @@ export function setupCreateCommand(program: Command): void {
           fs.removeSync(targetDir);
         }
 
-        // Clone kimu-core repository
-        console.log('Cloning KIMU-Core from GitHub...');
-        execSync(
-          `git clone https://github.com/UnicoVerso/kimu-core.git "${targetDir}"`,
-          { stdio: 'inherit' }
-        );
+        // Step 1: Create project folder
+        fs.mkdirSync(targetDir);
+        process.chdir(targetDir);
 
-        // Remove .git directory to clean the project
-        const gitDir = path.join(targetDir, '.git');
-        if (fs.existsSync(gitDir)) {
-          console.log('Cleaning project (removing .git directory)...');
-          fs.removeSync(gitDir);
+        // Step 2: npm init
+        console.log('Initializing npm project...');
+        execSync('npm init -y', { stdio: 'inherit' });
+
+        // Step 3: Install kimu-core
+        console.log('Installing kimu-core...');
+        execSync('npm install kimu-core', { stdio: 'inherit' });
+
+        // Step 4: Copy ALL files from kimu-core except node_modules, dist, .git, .env, etc.
+        const kimuCorePath = path.join(targetDir, 'node_modules', 'kimu-core');
+        if (!fs.existsSync(kimuCorePath)) {
+          throw new Error('kimu-core not found in node_modules.');
+        }
+        // List of folders/files to exclude
+        const exclude = [
+          'node_modules',
+          'dist',
+          '.git',
+          '.env',
+          'package-lock.json',
+        ];
+        const items = fs.readdirSync(kimuCorePath);
+        for (const item of items) {
+          if (exclude.includes(item)) continue;
+          const srcPath = path.join(kimuCorePath, item);
+          const destPath = path.join(targetDir, item);
+          fs.copySync(srcPath, destPath);
         }
 
-        // Update project name in package.json if it exists
+        // Step 5: Remove node_modules/kimu-core (optional)
+        if (fs.existsSync(kimuCorePath)) {
+          fs.removeSync(kimuCorePath);
+        }
+
+        // Step 6: Install all dependencies
+        if (options.install !== false) {
+          console.log('Installing all dependencies...');
+          execSync('npm install', { stdio: 'inherit' });
+        }
+
+        // Step 6.5: Generate kimu-build-config
+        console.log('Generating KIMU build configuration...');
+        execSync('npm run generate-config:dev', { stdio: 'inherit' });
+
+        // Step 7: Update package.json (only name)
         const packageJsonPath = path.join(targetDir, 'package.json');
         if (fs.existsSync(packageJsonPath)) {
           const packageJson = fs.readJsonSync(packageJsonPath);
@@ -55,23 +88,17 @@ export function setupCreateCommand(program: Command): void {
           console.log('Updated package.json with project name.');
         }
 
-        // Install dependencies if not skipped
-        if (options.install !== false) {
-          console.log('Installing dependencies...');
-          execSync('npm install', { cwd: targetDir, stdio: 'inherit' });
-        }
-
-        // Initialize new git repository if requested
+        // Step 8: Initialize git if requested
         if (options.git) {
           console.log('Initializing new git repository...');
-          execSync('git init', { cwd: targetDir, stdio: 'inherit' });
-          execSync('git add .', { cwd: targetDir, stdio: 'inherit' });
-          execSync('git commit -m "Initial commit from KIMU-CLI"', { 
-            cwd: targetDir, 
-            stdio: 'inherit' 
+          execSync('git init', { stdio: 'inherit' });
+          execSync('git add .', { stdio: 'inherit' });
+          execSync('git commit -m "Initial commit from KIMU-CLI"', {
+            stdio: 'inherit',
           });
         }
 
+        // Step 9: Final message
         console.log(`✅ Project ${name} created successfully!`);
         console.log(`📁 Location: ${targetDir}`);
         console.log(`🚀 Next steps:`);
@@ -79,18 +106,20 @@ export function setupCreateCommand(program: Command): void {
         if (options.install === false) {
           console.log(`   npm install`);
         }
-        console.log(`   npm start`);
-
+        console.log(`   npm run dev`);
+        console.log(
+          '📖 Documentation: https://github.com/UnicoVerso/kimu-core'
+        );
+        console.log('🔗 NPM package: https://www.npmjs.com/package/kimu-core');
       } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : String(error);
+        const errorMessage =
+          error instanceof Error ? error.message : String(error);
         console.error(`❌ Error creating project: ${errorMessage}`);
-        
         // Cleanup on error
         if (fs.existsSync(targetDir)) {
           console.log('Cleaning up incomplete project...');
           fs.removeSync(targetDir);
         }
-        
         process.exit(1);
       }
     });

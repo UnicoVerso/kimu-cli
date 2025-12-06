@@ -1,0 +1,62 @@
+# {{className}} Module
+
+## Overview
+This module provides {{name}} functionality to KIMU applications.
+
+## Installation
+This module has been created using `kimu new module {{name}}`.
+
+## Usage
+
+### Basic Usage
+```typescript
+import { KimuModuleManager } from '@kimu/core';
+import {{className}}Module from './modules/{{name}}/module';
+
+// Initialize module manager
+const moduleManager = KimuModuleManager.getInstance();
+
+// Load the module
+const {{camelName}}Module = new {{className}}Module();
+await moduleManager.loadModule({{camelName}}Module);
+
+// Get the service
+const {{camelName}}Service = moduleManager.getService('{{name}}');
+```
+
+### Advanced Usage
+```typescript
+// Use the service directly
+import { {{camelName}}Service } from './modules/{{name}}/{{name}}-service';
+
+// Call service methods
+{{camelName}}Service.exampleMethod();
+```
+
+## API Reference
+
+### {{className}}Module
+
+#### Methods
+- `getService()`: Returns the module service instance
+- `init()`: Initializes the module
+- `destroy()`: Cleanup when module is destroyed
+
+### {{className}}Service
+
+#### Methods
+- `getInstance()`: Get the singleton instance
+- `init()`: Initialize the service
+- `exampleMethod()`: Example method implementation
+
+## Configuration
+Add any configuration options for your module here.
+
+## Examples
+Add usage examples here.
+
+## Contributing
+Contributions are welcome! Please follow the KIMU contribution guidelines.
+
+## License
+This module follows the KIMU project license.

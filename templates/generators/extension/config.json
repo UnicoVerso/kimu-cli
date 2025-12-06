@@ -1,0 +1,45 @@
+{
+  "name": "extension",
+  "description": "Create a new UI extension with component, styles, and template",
+  "targetPath": "src/extensions/{{name}}",
+  "files": [
+    {
+      "name": "component.ts",
+      "template": "component.ts.template",
+      "description": "Extension logic and lifecycle"
+    },
+    {
+      "name": "style.css",
+      "template": "style.css.template",
+      "description": "Component styles"
+    },
+    {
+      "name": "view.html",
+      "template": "view.html.template",
+      "description": "HTML template"
+    }
+  ],
+  "registration": {
+    "enabled": true,
+    "file": "extension-manifest.json",
+    "type": "array",
+    "entry": {
+      "tag": "{{kebabName}}",
+      "name": "{{titleName}}",
+      "version": "1.0.0",
+      "description": "Description for {{name}} extension",
+      "author": "Your Name",
+      "icon": "🎨",
+      "internal": false,
+      "path": "{{name}}",
+      "dependencies": []
+    }
+  },
+  "postCreate": [
+    "Edit {{targetPath}}/component.ts to add your logic",
+    "Style your component in {{targetPath}}/style.css",
+    "Update the template in {{targetPath}}/view.html",
+    "Extension registered in extension-manifest.json",
+    "Load it with extensionManager.load('{{name}}')"
+  ]
+}

@@ -2,27 +2,79 @@
 
 Official command-line interface for the KIMU framework ecosystem.
 
+[![npm version](https://badge.fury.io/js/kimu-cli.svg)](https://badge.fury.io/js/kimu-cli)
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org)
+
+## Installation
+
+### Global Installation (Recommended)
+
+Install globally to use `kimu` command anywhere:
+
+```bash
+npm install -g kimu-cli
+```
+
+### Verify Installation
+
+```bash
+kimu --version
+kimu --help
+```
+
+### Alternative: Use with npx
+
+Run without installation:
+
+```bash
+npx kimu-cli create my-app
+```
+
+## Quick Start
+
+Create a new KIMU application:
+
+```bash
+# Create a new project
+kimu create my-app
+
+# Navigate to project
+cd my-app
+
+# Start development server
+npm run dev
+```
+
+Your application will be available at `http://localhost:5173/`
+
 ## Features
 
 - 🚀 **Project Creation**: Create new KIMU applications from templates with `kimu create`
-- 📦 **Module Management**: Install and manage modules from kimu-modules registry (planned)
-- 🧩 **Extension Management**: Install and manage UI extensions (planned)
+- 🎨 **Component Generation**: Extensible template-based system with `kimu new`
+- 🔌 **Custom Generators**: Add new component types via JSON configuration
+- 📦 **Module Management**: Install and manage modules from kimu-modules registry (mock, real registry coming soon)
+- 🧩 **Extension Management**: Install and manage UI extensions (mock, real registry coming soon)
+- 📋 **Package Discovery**: List and browse available modules and extensions
 - 🔧 **Build Tools**: Build and serve KIMU applications with optimization (planned)
 - 🔍 **Diagnostics**: Project health checks and compatibility validation (planned)
-- 🌐 **Ecosystem Integration**: Discover and explore KIMU packages (planned)
 
 ## Current Status
 
 ✅ **Available Commands:**
-- `kimu create` - Create new KIMU projects
+- `kimu create` - Create new KIMU projects from npm package
+- `kimu new <type> <name>` - Generate components from templates (extension, module, etc.)
+- `kimu new:list` - List all available component generators
+- `kimu install module <name>` - Install KIMU modules (mock, real registry coming soon)
+- `kimu install extension <name>` - Install KIMU extensions (mock, real registry coming soon)
+- `kimu list modules/extensions/installed` - Browse and discover packages
 - `kimu info` - Show project information
 - `kimu version` - Show version information  
 - `kimu help` - Command help system
 
 ⏳ **Planned Commands:**
-- `kimu install/remove` - Package management
+- `kimu remove` - Package removal
 - `kimu dev/build/serve` - Development workflow
-- `kimu list` - Browse packages
 - `kimu doctor` - Project diagnostics
 
 
@@ -55,14 +107,17 @@ If you use KIMU-CLI or want to improve it, open an issue or a pull request.
 - [Command Reference: kimu](docs/command-kimu.md)
 - [Distribution & Installation Guide](docs/distribution.md)
 
+
 ### Available Commands
 - [Command: create](docs/commands/create.md)
+- [Command: new](docs/commands/new.md) - **Extensible template-based generator system**
+- [Command: install](docs/commands/install.md) ✅ - **Install modules and extensions**
+- [Command: list](docs/commands/list.md) ✅ - **Browse and discover packages**
 - [Command: info](docs/commands/info.md)
 - [Command: help](docs/commands/help.md)
 - [Command: version](docs/commands/version.md)
 
 ### Planned Commands
-- [Command: install](docs/commands/install.md) ⏳
 - [Command: remove](docs/commands/remove.md) ⏳
 - [Command: list](docs/commands/list.md) ⏳
 - [Command: build](docs/commands/build.md) ⏳
@@ -131,6 +186,8 @@ kimu create --help
 
 ### ✅ Available Commands
 - `kimu create <name>` - Create a new KIMU project with basic structure
+- `kimu new <type> <name>` - Generate components from templates (extension, module, etc.)
+- `kimu new:list` - List all available component generators
 - `kimu info` - Show information about the current KIMU project
 - `kimu version` - Show KIMU-CLI version and system information
 - `kimu help` - Show help for all commands or specific command

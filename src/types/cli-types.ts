@@ -9,6 +9,15 @@ export interface CreateOptions {
   yes: boolean;
 }
 
+export interface NewOptions {
+  path?: string;
+  force: boolean;
+  register: boolean;
+  verbose: boolean;
+}
+
+export type ComponentType = 'extension' | 'module';
+
 export interface InstallOptions {
   verbose: boolean;
   save: boolean;

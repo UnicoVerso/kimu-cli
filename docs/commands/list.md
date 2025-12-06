@@ -4,82 +4,70 @@ List available and installed modules and extensions.
 
 ## Syntax
 ```bash
-kimu list [type] [options]
+kimu list modules [options]
+kimu list extensions [options]
+kimu list installed [options]
 ```
+
+## Abbreviations
+
+You can use short aliases for list commands:
+
+- `kimu l m` → `kimu list modules`
+- `kimu l e` → `kimu list extensions`
+- `kimu l i` → `kimu list installed`
 
 ## Arguments
 - `modules`: list available modules from registry
 - `extensions`: list available extensions from registry
-- `installed`: list currently installed modules and extensions
-- `templates`: list available project templates
+- `installed`: list currently installed modules and extensions in your project
 
 ## Options
-- `--json`: output in JSON format
-- `--verbose`: show detailed information
-- `--registry <url>`: use custom registry URL
-- `--filter <pattern>`: filter results by name pattern
-- `--updates`: show available updates for installed packages
+- `--verbose`: show detailed information (descriptions, etc.)
 
 ## Examples
 ```bash
 # List all available modules
 kimu list modules
+# Or using abbreviation
+kimu l m
 
 # List all available extensions
 kimu list extensions
+# Or using abbreviation
+kimu l e
 
-# List installed packages
+# List installed packages in current project
 kimu list installed
-
-# List available templates
-kimu list templates
-
-# Output in JSON format
-kimu list modules --json
+# Or using abbreviation
+kimu l i
 
 # Show detailed information
-kimu list installed --verbose
-
-# Filter by pattern
-kimu list modules --filter "router*"
-
-# Check for updates
-kimu list installed --updates
+kimu list modules --verbose
+kimu l e --verbose
 ```
 
 ## Output Information
 
-### Basic listing shows:
+### `kimu list modules` and `kimu list extensions` show:
 - Package name and version
-- Short description
-- Installation status (for installed packages)
+- Installation status with visual indicators:
+  - ✓ (green checkmark) for installed packages
+  - ○ (gray circle) for available packages
+  - `[installed]` label for clarity
+- With `--verbose`: full description
 
-### Verbose listing additionally shows:
-- Full description
-- Author information
-- Dependencies
-- Compatibility requirements
-- Last update date
-- Download statistics
-
-### Update checking shows:
-- Current installed version
-- Latest available version
-- Update priority (patch/minor/major)
-- Changelog summary
+### `kimu list installed` shows:
+- All modules and extensions currently installed in your project
+- Read from `kimu.config.json`
+- Grouped by type (Modules and Extensions)
 
 ## Notes
-- Requires internet connection for registry listings
-- Cached results are used when possible for performance
-- Updates can be checked for compatibility before installation
-- Supports filtering and search functionality
-
-## Registry Sources
-- Official modules and extensions from KIMU repositories
-- Community packages from verified sources
-- Custom registries via `--registry` option
+- `list modules` and `list extensions` read from registry and check installation status from `kimu.config.json`
+- `list installed` only shows packages actually installed in your project
+- Must be run from within a KIMU project directory (for installation status)
 
 ## Status
-⚠️ **This command is planned but not yet implemented**
-- Current status: Command structure defined, implementation pending
-- Target: Full registry browsing and package discovery
+✅ **Command available (mock version)**
+- Current status: The list command is available and reads installation status from kimu.config.json. Registry data is mocked, real registry integration coming soon.
+- Target: Full registry integration with real-time data and search functionality.

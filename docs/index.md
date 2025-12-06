@@ -5,8 +5,10 @@ Welcome to the complete documentation for KIMU-CLI, the official command-line in
 ## 📖 Getting Started
 
 ### Essential Reading
+- [**Getting Started Guide**](getting-started.md) - ⭐ **Start here!** Complete installation and first project tutorial
+- [**Quick Reference**](quick-reference.md) - 🚀 Common commands and workflows at a glance
 - [Introduction to KIMU-CLI](intro.md) - Overview and core concepts
-- [Distribution & Installation Guide](distribution.md) - Installation, building, and publishing
+- [Distribution & Installation Guide](distribution.md) - Advanced installation, building, and publishing
 - [Command Reference](command-kimu.md) - Complete command overview and usage
 
 ## ⚡ Quick References
@@ -15,6 +17,9 @@ Welcome to the complete documentation for KIMU-CLI, the official command-line in
 | Command | Description | Documentation |
 |---------|-------------|---------------|
 | `create` | Create new KIMU projects | [📖 docs](commands/create.md) |
+| `new` | Create components from templates | [📖 docs](commands/new.md) |
+| `install` | Install modules and extensions | [📖 docs](commands/install.md) ✅ |
+| `list` | Browse and discover packages | [📖 docs](commands/list.md) ✅ |
 | `info` | Show project information | [📖 docs](commands/info.md) |
 | `version` | Show version information | [📖 docs](commands/version.md) |
 | `help` | Command help system | [📖 docs](commands/help.md) |
@@ -22,9 +27,7 @@ Welcome to the complete documentation for KIMU-CLI, the official command-line in
 ### Planned Commands (Coming Soon)
 | Command | Description | Documentation |
 |---------|-------------|---------------|
-| `install` | Install modules and extensions | [📖 docs](commands/install.md) ⏳ |
 | `remove` | Remove modules and extensions | [📖 docs](commands/remove.md) ⏳ |
-| `list` | Browse available packages | [📖 docs](commands/list.md) ⏳ |
 | `build` | Build for production | [📖 docs](commands/build.md) ⏳ |
 | `dev` | Development server | [📖 docs](commands/dev.md) ⏳ |
 | `serve` | Serve built project | [📖 docs](commands/serve.md) ⏳ |
@@ -33,16 +36,18 @@ Welcome to the complete documentation for KIMU-CLI, the official command-line in
 ## 🎯 Use Case Guides
 
 ### For New Users
-1. **First Time Setup**: Start with [Introduction](intro.md) to understand KIMU-CLI
-2. **Installation**: Follow the [Distribution Guide](distribution.md) for installation
-3. **Create Your First Project**: Use [`kimu create`](commands/create.md)
-4. **Learn the Commands**: Browse the [Command Reference](command-kimu.md)
+1. **First Time Setup**: Start with [**Getting Started Guide**](getting-started.md) ⭐
+2. **Understand the Tool**: Read the [Introduction](intro.md) to understand KIMU-CLI
+3. **Installation Methods**: Follow the [Distribution Guide](distribution.md) for advanced options
+4. **Create Your First Project**: Use [`kimu create`](commands/create.md)
+5. **Learn the Commands**: Browse the [Command Reference](command-kimu.md)
 
 ### For Developers
-1. **Project Setup**: Use [`kimu create`](commands/create.md) and [`kimu info`](commands/info.md)
-2. **Development Workflow**: Plan ahead with [`kimu dev`](commands/dev.md) and [`kimu build`](commands/build.md) docs
-3. **Package Management**: Understand future [`kimu install`](commands/install.md) and [`kimu list`](commands/list.md)
-4. **Troubleshooting**: Prepare for [`kimu doctor`](commands/doctor.md) diagnostics
+1. **Quick Start**: Follow [Getting Started](getting-started.md) for complete workflow
+2. **Project Setup**: Use [`kimu create`](commands/create.md) and [`kimu info`](commands/info.md)
+3. **Development**: Use `npm run dev` for hot reload development
+4. **Building**: Use `npm run build` for production builds
+5. **Package Management**: Future [`kimu install`](commands/install.md) and [`kimu list`](commands/list.md)
 
 ### For Maintainers
 1. **Building and Distribution**: Follow [Distribution Guide](distribution.md)
@@ -54,36 +59,51 @@ Welcome to the complete documentation for KIMU-CLI, the official command-line in
 ```
 docs/
 ├── index.md                 # This file - documentation index
+├── getting-started.md       # ⭐ Complete installation and tutorial
 ├── intro.md                 # Introduction and overview  
 ├── command-kimu.md         # Complete command reference
-├── distribution.md         # Installation and distribution
+├── distribution.md         # Advanced installation and distribution
 └── commands/               # Individual command documentation
-    ├── create.md           # ✅ Available
-    ├── info.md             # ✅ Available  
-    ├── version.md          # ✅ Available
-    ├── help.md             # ✅ Available
-    ├── install.md          # ⏳ Planned
-    ├── remove.md           # ⏳ Planned
-    ├── list.md             # ⏳ Planned
-    ├── build.md            # ⏳ Planned
-    ├── dev.md              # ⏳ Planned
-    ├── serve.md            # ⏳ Planned
-    └── doctor.md           # ⏳ Planned
+    ├── create.md           # ✅ Available - Create new projects
+    ├── info.md             # ✅ Available - Project information
+    ├── version.md          # ✅ Available - Version information
+    ├── help.md             # ✅ Available - Help system
+    ├── install.md          # ⏳ Planned - Install modules/extensions
+    ├── remove.md           # ⏳ Planned - Remove packages
+    ├── list.md             # ⏳ Planned - List packages
+    ├── build.md            # ⏳ Planned - Build for production
+    ├── dev.md              # ⏳ Planned - Development server
+    ├── serve.md            # ⏳ Planned - Serve built project
+    └── doctor.md           # ⏳ Planned - Project diagnostics
 ```
 
 ## 🚀 Quick Start Examples
 
+### Installation
+
+**Global Installation (Recommended)**
+```bash
+npm install -g kimu-cli
+```
+
+**Using npx (No Installation)**
+```bash
+npx kimu-cli create my-awesome-app
+```
+
 ### Create and Setup New Project
 ```bash
-# Install KIMU-CLI globally
-npm install -g kimu-cli
-
 # Create new project
 kimu create my-awesome-app --git
 
-# Navigate and check project
+# Navigate to project
 cd my-awesome-app
+
+# Check project info
 kimu info --verbose
+
+# Start development server
+npm run dev
 ```
 
 ### Get Help and Information
@@ -94,9 +114,19 @@ kimu help
 # Get specific command help
 kimu create --help
 
-# Check versions
+# Check CLI version
+kimu --version
+
+# Detailed version info
 kimu version --verbose
 ```
+
+## 📦 NPM Package
+
+- **Package**: [kimu-cli on npm](https://www.npmjs.com/package/kimu-cli)
+- **Repository**: [GitHub - UnicoVerso/kimu-cli](https://github.com/UnicoVerso/kimu-cli)
+- **Current Version**: Check with `kimu --version`
+- **License**: MPL-2.0
 
 ## 🔄 Status Legend
 

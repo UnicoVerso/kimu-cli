@@ -1,0 +1,66 @@
+import { KimuComponent } from '../../core/kimu-component';
+import { KimuComponentElement } from '../../core/kimu-component-element';
+
+@KimuComponent({
+  tag: '{{kebabName}}',
+  name: '{{titleName}}',
+  version: '1.0.0',
+  description: 'Description for {{name}} extension',
+  author: 'Your Name',
+  icon: '🎨',
+  internal: false,
+  path: '{{name}}',
+  dependencies: []
+})
+export class {{className}}Extension extends KimuComponentElement {
+  /**
+   * Initialize the extension
+   */
+  async onInit(): Promise<void> {
+    console.log('{{className}} extension initialized');
+  }
+
+  /**
+   * Get data for template binding
+   */
+  getData() {
+    return {
+      title: '{{titleName}}',
+      message: 'Welcome to {{name}} extension!'
+    };
+  }
+
+  /**
+   * Called after rendering
+   */
+  onRender(): void {
+    // Add event listeners or DOM manipulations here
+    this.setupEventListeners();
+  }
+
+  /**
+   * Setup event listeners
+   */
+  private setupEventListeners(): void {
+    // Example: Button click handler
+    const button = this.$('#actionButton');
+    if (button) {
+      button.addEventListener('click', () => this.handleAction());
+    }
+  }
+
+  /**
+   * Handle button action
+   */
+  private handleAction(): void {
+    console.log('Action triggered in {{name}}');
+    // Add your logic here
+  }
+
+  /**
+   * Cleanup when extension is destroyed
+   */
+  onDestroy(): void {
+    console.log('{{className}} extension destroyed');
+  }
+}

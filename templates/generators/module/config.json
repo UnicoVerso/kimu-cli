@@ -1,0 +1,35 @@
+{
+  "name": "module",
+  "description": "Create a new service module with module class and service",
+  "targetPath": "src/modules/{{name}}",
+  "files": [
+    {
+      "name": "module.ts",
+      "template": "module.ts.template",
+      "description": "Module class"
+    },
+    {
+      "name": "{{name}}-service.ts",
+      "template": "service.ts.template",
+      "description": "Service implementation"
+    },
+    {
+      "name": "README.md",
+      "template": "README.md.template",
+      "description": "Module documentation"
+    }
+  ],
+  "registration": {
+    "enabled": true,
+    "file": "kimu.config.json",
+    "type": "object",
+    "path": "modules.installed",
+    "entry": "{{name}}"
+  },
+  "postCreate": [
+    "Edit {{targetPath}}/module.ts to implement your module",
+    "Create services in {{targetPath}}/{{name}}-service.ts",
+    "Module registered in kimu.config.json",
+    "Load it with new {{className}}Module()"
+  ]
+}

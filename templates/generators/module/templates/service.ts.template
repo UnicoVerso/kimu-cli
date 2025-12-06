@@ -1,0 +1,41 @@
+/**
+ * {{className}} Service
+ * 
+ * This service provides {{name}} functionality to KIMU applications.
+ */
+export class {{className}}Service {
+  private static instance: {{className}}Service;
+
+  private constructor() {
+    // Private constructor for singleton pattern
+  }
+
+  /**
+   * Get the singleton instance
+   */
+  static getInstance(): {{className}}Service {
+    if (!{{className}}Service.instance) {
+      {{className}}Service.instance = new {{className}}Service();
+    }
+    return {{className}}Service.instance;
+  }
+
+  /**
+   * Initialize the service
+   */
+  async init(): Promise<void> {
+    console.log('{{className}}Service initialized');
+    // Add initialization logic here
+  }
+
+  /**
+   * Example method
+   */
+  public exampleMethod(): void {
+    console.log('{{className}}Service.exampleMethod called');
+    // Add your method implementation here
+  }
+}
+
+// Export singleton instance
+export const {{camelName}}Service = {{className}}Service.getInstance();

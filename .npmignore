@@ -1,0 +1,58 @@
+# Source files
+src/
+tests/
+*.test.ts
+*.spec.ts
+
+# Development files
+.vscode/
+.idea/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+*.tsbuildinfo
+
+# IDE files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+.github/workflows/
+
+# Documentation source
+docs-src/
+
+# Test projects
+test-*/
+test-kimu-projects/
+
+# ESLint and Prettier
+.eslintrc.js
+.prettierrc
+.prettierignore
+
+# TypeScript config (keep only dist/)
+
+# IMPORTANT: Keep templates folder for runtime use
+!templates/
+tsconfig.json
+tsconfig.*.json
+
+# Temporary project folders
+_TMP/

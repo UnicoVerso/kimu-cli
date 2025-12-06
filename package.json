@@ -1,7 +1,7 @@
 {
   "name": "kimu-cli",
-  "version": "0.0.1",
-  "description": "Official command-line interface for the KIMU framework ecosystem",
+  "version": "0.2.1",
+  "description": "Official command-line interface for the KIMU framework ecosystem - Create, build, and manage KIMU applications with extensible template-based generators",
   "main": "dist/index.js",
   "bin": {
     "kimu": "./bin/kimu.js"
@@ -19,9 +19,9 @@
     "release": "npm run build && npm publish",
     "prepare": "npm run build",
     "package": "npm run build && npm pack",
-    "version": "npm run build && npm test",
-    "prepublishOnly": "npm run lint && npm run test",
-    "preversion": "npm run lint && npm run test",
+    "version": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
     "postversion": "git push && git push --tags"
   },
   "keywords": [
@@ -30,9 +30,17 @@
     "framework",
     "web-components",
     "typescript",
-    "developer-tools"
+    "developer-tools",
+    "scaffolding",
+    "generator",
+    "build-tool",
+    "kimu-framework"
   ],
-  "author": "UnicoVerso",
+  "author": {
+    "name": "Marco Di Pasquale",
+    "email": "info@unicoverso.com",
+    "url": "https://unicoverso.com"
+  },
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
@@ -82,6 +90,12 @@
     "templates/**/*",
     "README.md",
     "LICENSE",
-    "CHANGELOG.md"
-  ]
+    "CHANGELOG.md",
+    "docs/**/*"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "preferGlobal": true
 }

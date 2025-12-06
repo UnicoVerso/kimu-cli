@@ -1,0 +1,36 @@
+import { KimuModule } from '../../core/kimu-module';
+import { {{camelName}}Service } from './{{name}}-service';
+
+/**
+ * {{className}} Module
+ * 
+ * This module provides {{name}} functionality to KIMU applications.
+ */
+export default class {{className}}Module extends KimuModule {
+  constructor(name = '{{name}}', version = '1.0.0', options?: any) {
+    super(name, version, options);
+  }
+
+  /**
+   * Get the module service instance
+   */
+  getService() {
+    return {{camelName}}Service;
+  }
+
+  /**
+   * Initialize the module
+   */
+  async init(): Promise<void> {
+    console.log('{{className}}Module initialized');
+    // Add initialization logic here
+  }
+
+  /**
+   * Cleanup when module is destroyed
+   */
+  destroy(): void {
+    console.log('{{className}}Module destroyed');
+    // Add cleanup logic here
+  }
+}

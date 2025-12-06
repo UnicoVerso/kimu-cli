@@ -1,0 +1,9 @@
+<div class="{{name}}-container">
+  <h1 class="{{name}}-title">${title}</h1>
+  <div class="{{name}}-content">
+    <p>${message}</p>
+  </div>
+  <button id="actionButton" class="{{name}}-button">
+    Click Me
+  </button>
+</div>

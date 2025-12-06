@@ -13,10 +13,11 @@ const { setupVersionCommand } = require('../dist/commands/version');
 const { setupInfoCommand } = require('../dist/commands/info');
 const { setupHelpCommand } = require('../dist/commands/help');
 const { setupCreateCommand } = require('../dist/commands/create');
+const { setupNewCommand } = require('../dist/commands/new');
 // TODO: Import other commands as they are implemented
-// const { setupInstallCommand } = require('../dist/commands/install');
+const { setupInstallCommand } = require('../dist/commands/install');
+const { setupListCommand } = require('../dist/commands/list');
 // const { setupBuildCommand } = require('../dist/commands/build');
-// const { setupListCommand } = require('../dist/commands/list');
 
 const program = new Command();
 
@@ -33,11 +34,12 @@ setupVersionCommand(program);
 setupInfoCommand(program);
 setupHelpCommand(program);
 setupCreateCommand(program);
+setupNewCommand(program);
 
 // TODO: Setup other commands as they are implemented
-// setupInstallCommand(program);
+setupInstallCommand(program);
+setupListCommand(program);
 // setupBuildCommand(program);
-// setupListCommand(program);
 
 // Parse command line arguments
 program.parse(process.argv);
