@@ -195,7 +195,7 @@ interface CompatibilityMatrix {
       'npm': '>=8.0.0'
     },
     '1.1.x': {
-      'kimu-core': '^1.0.0 || ^1.1.0',
+      'kimu-core': '^1.0.0 || ^1.1.0 || ^1.2.0',
       'node': '>=18.0.0',
       'npm': '>=8.0.0'
     }
