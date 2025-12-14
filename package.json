@@ -1,6 +1,6 @@
 {
   "name": "kimu-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Official command-line interface for the KIMU framework ecosystem - Create, build, and manage KIMU applications with extensible template-based generators",
   "main": "dist/index.js",
   "bin": {

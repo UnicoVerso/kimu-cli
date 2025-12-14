@@ -9,19 +9,42 @@ async function getInstalledPackages(): Promise<{
   modules: string[];
   extensions: string[];
 }> {
+  const modules: string[] = [];
+  const extensions: string[] = [];
+
   try {
-    const configPath = path.join(process.cwd(), 'kimu.config.json');
-    if (await fs.pathExists(configPath)) {
-      const config = await fs.readJson(configPath);
-      return {
-        modules: config.modules?.installed || [],
-        extensions: config.extensions?.installed || [],
-      };
+    // Read modules from modules-manifest.json
+    const modulesManifestPath = path.join(
+      process.cwd(),
+      'src',
+      'modules',
+      'modules-manifest.json'
+    );
+    if (await fs.pathExists(modulesManifestPath)) {
+      const modulesManifest = await fs.readJson(modulesManifestPath);
+      modules.push(
+        ...(modulesManifest.installedModules?.map((mod: any) => mod.name) || [])
+      );
+    }
+
+    // Read extensions from extensions-manifest.json
+    const extensionsManifestPath = path.join(
+      process.cwd(),
+      'src',
+      'extensions',
+      'extensions-manifest.json'
+    );
+    if (await fs.pathExists(extensionsManifestPath)) {
+      const extensionsManifest = await fs.readJson(extensionsManifestPath);
+      extensions.push(
+        ...(extensionsManifest.installedExtensions?.map((ext: any) => ext.tag || ext.name) || [])
+      );
     }
   } catch (error) {
-    // Ignore errors, return empty
+    // Ignore errors, return empty arrays
   }
-  return { modules: [], extensions: [] };
+
+  return { modules, extensions };
 }
 
 export function setupListCommand(program: Command): void {
