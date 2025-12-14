@@ -14,7 +14,7 @@ interface DiagnosticResult {
 
 async function checkProjectStructure(): Promise<DiagnosticResult> {
   const checks = [];
-  
+
   // Check package.json
   const packageJsonPath = path.join(process.cwd(), 'package.json');
   if (await fs.pathExists(packageJsonPath)) {
@@ -30,7 +30,7 @@ async function checkProjectStructure(): Promise<DiagnosticResult> {
       message: 'package.json not found',
     });
   }
-  
+
   // Check src directory
   const srcPath = path.join(process.cwd(), 'src');
   if (await fs.pathExists(srcPath)) {
@@ -46,7 +46,7 @@ async function checkProjectStructure(): Promise<DiagnosticResult> {
       message: 'src/ directory not found',
     });
   }
-  
+
   // Check modules
   const modulesPath = path.join(process.cwd(), 'src', 'modules');
   if (await fs.pathExists(modulesPath)) {
@@ -71,11 +71,14 @@ async function checkProjectStructure(): Promise<DiagnosticResult> {
       message: 'src/modules/ directory not found',
     });
   }
-  
+
   // Check extensions
   const extensionsPath = path.join(process.cwd(), 'src', 'extensions');
   if (await fs.pathExists(extensionsPath)) {
-    const extensionsManifestPath = path.join(extensionsPath, 'extensions-manifest.json');
+    const extensionsManifestPath = path.join(
+      extensionsPath,
+      'extensions-manifest.json'
+    );
     if (await fs.pathExists(extensionsManifestPath)) {
       checks.push({
         name: 'extensions manifest',
@@ -96,7 +99,7 @@ async function checkProjectStructure(): Promise<DiagnosticResult> {
       message: 'src/extensions/ directory not found',
     });
   }
-  
+
   return {
     category: 'Project Structure',
     checks,
@@ -105,7 +108,7 @@ async function checkProjectStructure(): Promise<DiagnosticResult> {
 
 async function checkDependencies(): Promise<DiagnosticResult> {
   const checks = [];
-  
+
   // Check node_modules
   const nodeModulesPath = path.join(process.cwd(), 'node_modules');
   if (await fs.pathExists(nodeModulesPath)) {
@@ -121,7 +124,7 @@ async function checkDependencies(): Promise<DiagnosticResult> {
       message: 'Dependencies not installed. Run: npm install',
     });
   }
-  
+
   // Check for kimu-core
   const kimuCorePath = path.join(process.cwd(), 'node_modules', 'kimu-core');
   if (await fs.pathExists(kimuCorePath)) {
@@ -137,7 +140,7 @@ async function checkDependencies(): Promise<DiagnosticResult> {
       message: 'kimu-core not found in dependencies',
     });
   }
-  
+
   return {
     category: 'Dependencies',
     checks,
@@ -146,7 +149,7 @@ async function checkDependencies(): Promise<DiagnosticResult> {
 
 async function checkBuildArtifacts(): Promise<DiagnosticResult> {
   const checks = [];
-  
+
   // Check dist directory
   const distPath = path.join(process.cwd(), 'dist');
   if (await fs.pathExists(distPath)) {
@@ -162,7 +165,7 @@ async function checkBuildArtifacts(): Promise<DiagnosticResult> {
       message: 'Build artifacts not found. Run: kimu build',
     });
   }
-  
+
   return {
     category: 'Build Artifacts',
     checks,
@@ -176,49 +179,49 @@ export function setupDoctorCommand(program: Command): void {
     .option('--verbose', 'show detailed diagnostic information')
     .action(async (_options: any) => {
       console.log(chalk.bold.cyan('\n🏥 KIMU Project Diagnostics\n'));
-      
+
       try {
         const diagnostics: DiagnosticResult[] = [
           await checkProjectStructure(),
           await checkDependencies(),
           await checkBuildArtifacts(),
         ];
-        
+
         let totalPass = 0;
         let totalFail = 0;
         let totalWarn = 0;
-        
+
         for (const diagnostic of diagnostics) {
           console.log(chalk.bold(`\n${diagnostic.category}:`));
-          
+
           for (const check of diagnostic.checks) {
             const icon =
               check.status === 'pass'
                 ? chalk.green('✓')
                 : check.status === 'fail'
-                ? chalk.red('✗')
-                : chalk.yellow('⚠');
-            
+                  ? chalk.red('✗')
+                  : chalk.yellow('⚠');
+
             const message =
               check.status === 'pass'
                 ? chalk.green(check.message)
                 : check.status === 'fail'
-                ? chalk.red(check.message)
-                : chalk.yellow(check.message);
-            
+                  ? chalk.red(check.message)
+                  : chalk.yellow(check.message);
+
             console.log(`  ${icon} ${check.name}: ${message}`);
-            
+
             if (check.status === 'pass') totalPass++;
             if (check.status === 'fail') totalFail++;
             if (check.status === 'warn') totalWarn++;
           }
         }
-        
+
         console.log(chalk.bold.cyan('\n📊 Summary:\n'));
         console.log(`  ${chalk.green('✓')} Passed: ${totalPass}`);
         console.log(`  ${chalk.red('✗')} Failed: ${totalFail}`);
         console.log(`  ${chalk.yellow('⚠')} Warnings: ${totalWarn}\n`);
-        
+
         if (totalFail > 0) {
           console.log(
             chalk.red(

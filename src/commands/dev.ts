@@ -25,23 +25,27 @@ export function setupDevCommand(program: Command): void {
             HOST: options.host,
           },
         });
-        
+
         spinner.succeed(chalk.green('✅ Development server started!'));
-        console.log(chalk.cyan(`\n🚀 Server running at: http://${options.host}:${options.port}\n`));
+        console.log(
+          chalk.cyan(
+            `\n🚀 Server running at: http://${options.host}:${options.port}\n`
+          )
+        );
         console.log(chalk.dim('Press Ctrl+C to stop the server\n'));
-        
-        devProcess.on('error', (error) => {
+
+        devProcess.on('error', error => {
           console.error(chalk.red(`❌ Server error: ${error.message}`));
           process.exit(1);
         });
-        
-        devProcess.on('exit', (code) => {
+
+        devProcess.on('exit', code => {
           if (code !== 0 && code !== null) {
             console.error(chalk.red(`❌ Server exited with code ${code}`));
             process.exit(code);
           }
         });
-        
+
         // Handle Ctrl+C
         process.on('SIGINT', () => {
           console.log(chalk.yellow('\n\n⚠️  Stopping development server...'));
@@ -49,7 +53,9 @@ export function setupDevCommand(program: Command): void {
           process.exit(0);
         });
       } catch (error: any) {
-        spinner.fail(chalk.red(`❌ Failed to start dev server: ${error.message}`));
+        spinner.fail(
+          chalk.red(`❌ Failed to start dev server: ${error.message}`)
+        );
         process.exit(1);
       }
     });

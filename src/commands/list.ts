@@ -37,7 +37,9 @@ async function getInstalledPackages(): Promise<{
     if (await fs.pathExists(extensionsManifestPath)) {
       const extensionsManifest = await fs.readJson(extensionsManifestPath);
       extensions.push(
-        ...(extensionsManifest.installedExtensions?.map((ext: any) => ext.tag || ext.name) || [])
+        ...(extensionsManifest.installedExtensions?.map(
+          (ext: any) => ext.tag || ext.name
+        ) || [])
       );
     }
   } catch (error) {

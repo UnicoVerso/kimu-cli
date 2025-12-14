@@ -16,13 +16,13 @@ export function setupServeCommand(program: Command): void {
       const spinner = ora('Starting production server...').start();
       try {
         const distPath = path.join(process.cwd(), 'dist');
-        
+
         if (!fs.existsSync(distPath)) {
           throw new Error(
             'Build directory not found. Please run "kimu build" first.'
           );
         }
-        
+
         // Use vite preview or simple http server
         const serveProcess = spawn(
           'npx',
@@ -33,23 +33,27 @@ export function setupServeCommand(program: Command): void {
             shell: true,
           }
         );
-        
+
         spinner.succeed(chalk.green('✅ Production server started!'));
-        console.log(chalk.cyan(`\n🚀 Server running at: http://${options.host}:${options.port}\n`));
+        console.log(
+          chalk.cyan(
+            `\n🚀 Server running at: http://${options.host}:${options.port}\n`
+          )
+        );
         console.log(chalk.dim('Press Ctrl+C to stop the server\n'));
-        
-        serveProcess.on('error', (error) => {
+
+        serveProcess.on('error', error => {
           console.error(chalk.red(`❌ Server error: ${error.message}`));
           process.exit(1);
         });
-        
-        serveProcess.on('exit', (code) => {
+
+        serveProcess.on('exit', code => {
           if (code !== 0 && code !== null) {
             console.error(chalk.red(`❌ Server exited with code ${code}`));
             process.exit(code);
           }
         });
-        
+
         // Handle Ctrl+C
         process.on('SIGINT', () => {
           console.log(chalk.yellow('\n\n⚠️  Stopping server...'));
