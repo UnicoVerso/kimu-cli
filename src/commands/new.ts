@@ -353,16 +353,16 @@ export async function handleNewCommand(
     // Check if we're in a KIMU project (check for package.json with kimu-core or src structure)
     const packageJsonPath = path.join(process.cwd(), 'package.json');
     const srcPath = path.join(process.cwd(), 'src');
-    
+
     let isKimuProject = false;
-    
+
     if (fs.existsSync(packageJsonPath)) {
       const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-      isKimuProject = 
-        packageJson.dependencies?.['kimu-core'] || 
+      isKimuProject =
+        packageJson.dependencies?.['kimu-core'] ||
         packageJson.devDependencies?.['kimu-core'];
     }
-    
+
     if (!isKimuProject && !fs.existsSync(srcPath)) {
       spinner.fail(chalk.red('Not in a KIMU project directory'));
       logger.error(
