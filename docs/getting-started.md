@@ -105,7 +105,7 @@ You should see your KIMU application running! 🎉
 
 ### Step 5: Make Your First Change
 
-Open `src/extensions/kimu-home/component.ts` and modify the `getData()` method:
+Open `src/extensions/app-root/component.ts` and modify the `getData()` method:
 
 ```typescript
 getData() {
@@ -132,7 +132,7 @@ async function main() {
   const extensionManager = KimuExtensionManager.getInstance();
   
   await extensionManager.init();
-  await extensionManager.load('kimu-home');
+  await extensionManager.load('app-root');
 }
 ```
 
@@ -148,8 +148,8 @@ Project configuration file:
     "registry": "https://github.com/unicoverso/kimu-modules"
   },
   "extensions": {
-    "installed": ["kimu-home"],
-    "main": "kimu-home"
+    "installed": ["app-root"],
+    "main": "app-root"
   }
 }
 ```

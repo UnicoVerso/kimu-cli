@@ -263,8 +263,8 @@ my-kimu-app/                    # Created by: kimu create my-kimu-app
 │   │   ├── router/             # Downloaded from kimu-modules
 │   │   ├── i18n/               # Downloaded from kimu-modules
 │   │   └── analytics/          # Downloaded from kimu-modules
-│   ├── extensions/             # Extensions installed via: kimu install extension <name>
-│   │   ├── kimu-home/          # Default extension from kimu-core
+┌   ├── extensions/             # Extensions installed via: kimu install extension <name>
+┌   ├   ├── app-root/          # Default extension from kimu-core
 │   │   └── kimu-dashboard/     # Downloaded from kimu-modules
 │   ├── components/             # Custom project components
 │   ├── assets/                 # Static assets
@@ -302,11 +302,11 @@ async function main() {
   await extensionManager.init();
   
   // Load main extension (configurable in kimu.config.json)
-  await extensionManager.load('kimu-home');
+  await extensionManager.load('app-root');
   
   // Mount application
   const root = document.getElementById('app');
-  const mainComponent = document.createElement('kimu-home');
+  const mainComponent = document.createElement('app-root');
   root?.appendChild(mainComponent);
 }
 
@@ -332,8 +332,8 @@ main().catch(console.error);
     }
   },
   "extensions": {
-    "installed": ["kimu-home", "kimu-dashboard"],
-    "main": "kimu-home",
+    "installed": ["app-root", "kimu-dashboard"],
+    "main": "app-root",
     "dependencies": {
       "kimu-dashboard": "^2.1.0"
     }

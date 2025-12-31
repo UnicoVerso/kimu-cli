@@ -10,7 +10,6 @@ import chalk from 'chalk';
 import ora from 'ora';
 import { Logger } from '../utils/logger';
 import { NewOptions } from '../types/cli-types';
-import { KIMU_CONFIG_FILE } from '../config/constants';
 
 /**
  * Generator configuration structure
@@ -351,11 +350,23 @@ export async function handleNewCommand(
   const spinner = ora('Creating component...').start();
 
   try {
-    // Check if we're in a KIMU project
-    if (!fs.existsSync(KIMU_CONFIG_FILE)) {
+    // Check if we're in a KIMU project (check for package.json with kimu-core or src structure)
+    const packageJsonPath = path.join(process.cwd(), 'package.json');
+    const srcPath = path.join(process.cwd(), 'src');
+    
+    let isKimuProject = false;
+    
+    if (fs.existsSync(packageJsonPath)) {
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+      isKimuProject = 
+        packageJson.dependencies?.['kimu-core'] || 
+        packageJson.devDependencies?.['kimu-core'];
+    }
+    
+    if (!isKimuProject && !fs.existsSync(srcPath)) {
       spinner.fail(chalk.red('Not in a KIMU project directory'));
       logger.error(
-        `Run this command from the root of a KIMU project (${KIMU_CONFIG_FILE} not found)`
+        'Run this command from the root of a KIMU project (package.json with kimu-core dependency not found)'
       );
       process.exit(1);
     }

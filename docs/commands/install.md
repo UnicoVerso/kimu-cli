@@ -103,7 +103,7 @@ The `list modules` and `list extensions` commands show:
   ```bash
   kimu install module router
   kimu i m router
-  kimu install extension kimu-home
+  kimu install extension app-root
   kimu i e kimu-dashboard
   kimu install module analytics --verbose
   ```

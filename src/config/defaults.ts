@@ -28,8 +28,8 @@ export const DEFAULT_KIMU_CONFIG: Omit<KimuConfig, 'name' | 'version'> = {
     dependencies: {},
   },
   extensions: {
-    installed: ['kimu-home'],
-    main: 'kimu-home',
+    installed: ['app-root'],
+    main: 'app-root',
     dependencies: {},
   },
   build: {
@@ -68,8 +68,8 @@ export const DEFAULT_MODULE_CONFIG: ModuleConfiguration = {
 };
 
 export const DEFAULT_EXTENSION_CONFIG: ExtensionConfiguration = {
-  installed: ['kimu-home'],
-  main: 'kimu-home',
+  installed: ['app-root'],
+  main: 'app-root',
   dependencies: {},
 };
 

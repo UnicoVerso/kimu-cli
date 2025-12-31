@@ -201,8 +201,8 @@ my-project/
     "registry": "https://github.com/unicoverso/kimu-modules"
   },
   "extensions": {
-    "installed": ["kimu-home"],
-    "main": "kimu-home"
+    "installed": ["app-root"],
+    "main": "app-root"
   }
 }
 ```

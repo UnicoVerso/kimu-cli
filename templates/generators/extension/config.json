@@ -4,24 +4,21 @@
   "targetPath": "src/extensions/{{name}}",
   "files": [
     {
-      "name": "component.ts",
       "template": "component.ts.template",
-      "description": "Extension logic and lifecycle"
+      "output": "component.ts"
     },
     {
-      "name": "style.css",
       "template": "style.css.template",
-      "description": "Component styles"
+      "output": "style.css"
     },
     {
-      "name": "view.html",
       "template": "view.html.template",
-      "description": "HTML template"
+      "output": "view.html"
     }
   ],
   "registration": {
     "enabled": true,
-    "file": "extension-manifest.json",
+    "file": "src/extensions/extensions-manifest.json",
     "type": "array",
     "entry": {
       "tag": "{{kebabName}}",

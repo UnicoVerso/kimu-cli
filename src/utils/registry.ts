@@ -16,7 +16,7 @@ export class KimuRegistry {
     type?: 'module' | 'extension'
   ): Promise<any | null> {
     // TODO: real fetch from remote registry
-    // Mock for now: "router" module and "kimu-home" extension
+    // Mock for now: "router" module and "app-root" extension
     const mockCatalog: {
       modules: Record<string, any>;
       extensions: Record<string, any>;
@@ -42,11 +42,11 @@ export class KimuRegistry {
         },
       },
       extensions: {
-        'kimu-home': {
-          name: 'kimu-home',
+        'app-root': {
+          name: 'app-root',
           type: 'extension',
           version: '1.0.0',
-          description: 'Home extension',
+          description: 'Application root component',
         },
         'kimu-dashboard': {
           name: 'kimu-dashboard',
@@ -98,11 +98,11 @@ export class KimuRegistry {
     // TODO: real fetch from remote registry
     const mockCatalog = {
       extensions: {
-        'kimu-home': {
-          name: 'kimu-home',
+        'app-root': {
+          name: 'app-root',
           type: 'extension',
           version: '1.0.0',
-          description: 'Home extension',
+          description: 'Application root component',
         },
         'kimu-dashboard': {
           name: 'kimu-dashboard',

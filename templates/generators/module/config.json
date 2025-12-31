@@ -4,27 +4,27 @@
   "targetPath": "src/modules/{{name}}",
   "files": [
     {
-      "name": "module.ts",
       "template": "module.ts.template",
-      "description": "Module class"
+      "output": "module.ts"
     },
     {
-      "name": "{{name}}-service.ts",
       "template": "service.ts.template",
-      "description": "Service implementation"
+      "output": "{{name}}-service.ts"
     },
     {
-      "name": "README.md",
       "template": "README.md.template",
-      "description": "Module documentation"
+      "output": "README.md"
     }
   ],
   "registration": {
     "enabled": true,
-    "file": "kimu.config.json",
-    "type": "object",
-    "path": "modules.installed",
-    "entry": "{{name}}"
+    "file": "src/modules/modules-manifest.json",
+    "type": "array",
+    "entry": {
+      "name": "{{name}}",
+      "version": "1.0.0",
+      "description": "Description for {{name}} module"
+    }
   },
   "postCreate": [
     "Edit {{targetPath}}/module.ts to implement your module",
