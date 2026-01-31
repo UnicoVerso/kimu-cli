@@ -39,9 +39,15 @@ export function setupCreateCommand(program: Command): void {
         console.log('Initializing npm project...');
         execSync('npm init -y', { stdio: 'inherit' });
 
-        // Step 3: Install kimu-core
+        // Step 3: Install kimu-core (force local install, ignore parent node_modules)
         console.log('Installing kimu-core...');
-        execSync('npm install kimu-core', { stdio: 'inherit' });
+        execSync(
+          'npm install kimu-core --no-workspaces --install-strategy=shallow',
+          {
+            stdio: 'inherit',
+            cwd: targetDir,
+          }
+        );
 
         // Step 4: Copy ALL files from kimu-core except node_modules, dist, .git, .env, etc.
         const kimuCorePath = path.join(targetDir, 'node_modules', 'kimu-core');
